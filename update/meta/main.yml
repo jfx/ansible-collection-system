@@ -1,0 +1,27 @@
+---
+galaxy_info:
+  author: FX Soubirou
+  description: Ansible role that update/upgrade Ubuntu and Debian Operating Systems.
+
+  license: MIT
+
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+        - jammy
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+
+  galaxy_tags:
+    - system
+    - security
+    - ubuntu
+    - debian
+
+dependencies: []

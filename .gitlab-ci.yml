@@ -1,0 +1,109 @@
+---
+variables:
+  GITHUB_EMAIL: $GITLAB_USER_EMAIL
+  GITHUB_REPO: ansible-os-update
+  GITHUB_USER: jfxs
+  IMAGE_ANSIBLE: jfxs/ansible
+  IMAGE_DEFAULT: alpine:latest
+  IMAGE_GIT: alpine/git
+  IMAGE_MARKDOWNLINT: davidanson/markdownlint-cli2
+  IMAGE_NODE: node:lts-bullseye
+  IMAGE_YAMLLINT: jfxs/ansible
+
+stages:
+  - checks
+  - tests
+  - gitlab-release
+  - deploy
+
+lint-file:
+  image: $IMAGE_DEFAULT
+  stage: checks
+  before_script:
+    - apk --no-cache add curl file git ncurses
+    - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+    - task --version
+    - curl --progress-bar -o Taskfile.yml https://gitlab.com/op_so/task/task-templates/-/raw/main/Taskfile.dist.yml
+    - task 00:00-init-task
+  script:
+    - task lint:file
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
+
+lint-markdown:
+  image:
+    name: $IMAGE_MARKDOWNLINT
+    entrypoint: [""]
+  stage: checks
+  before_script:
+    - sh -c "$(wget -qO - https://taskfile.dev/install.sh)" -- -d
+    - ./bin/task --version
+    - wget -c -q --show-progress -O Taskfile.yml https://gitlab.com/op_so/task/task-templates/-/raw/main/Taskfile.dist.yml
+    - ./bin/task 00:00-init-task
+  script:
+    - ./bin/task lint:markdown G="\"**/*.md\" \"#node_modules\" \"#.node_cache\""
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
+
+lint-yaml:
+  image: $IMAGE_YAMLLINT
+  stage: checks
+  before_script:
+    - sh -c "$(wget -qO - https://taskfile.dev/install.sh)" -- -d
+    - ./bin/task --version
+    - wget -c -q --show-progress -O Taskfile.yml https://gitlab.com/op_so/task/task-templates/-/raw/main/Taskfile.dist.yml
+    - ./bin/task 00:00-init-task
+  script:
+    - ./bin/task lint:yaml
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
+
+test-ansible:
+  image: $IMAGE_ANSIBLE
+  stage: tests
+  before_script:
+    - sh -c "$(wget -qO - https://taskfile.dev/install.sh)" -- -d
+    - ./bin/task --version
+    - wget -c -q --show-progress -O Taskfile.yml https://gitlab.com/op_so/task/task-templates/-/raw/main/Taskfile.dist.yml
+    - ./bin/task 00:00-init-task
+  script:
+    - ./bin/task 00:10-ansible-test
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push"
+
+gitlab-release:
+  image: $IMAGE_NODE
+  stage: gitlab-release
+  before_script:
+    - yarn install
+  script:
+    - npx semantic-release
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_COMMIT_BRANCH == "main"
+
+deploy-github:
+  image:
+    name: $IMAGE_NODE
+    entrypoint: [""]
+  stage: deploy
+  before_script:
+    - git clone "https://${GITLAB_USERNAME}:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "${CI_COMMIT_SHA}"
+    - cd "${CI_COMMIT_SHA}"
+    - git config user.email "${GITHUB_EMAIL}"
+    - git config user.name "${GITHUB_USER}"
+    - git remote add github "https://${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git"
+  script:
+    - cd "${CI_COMMIT_SHA}"
+    - git push github main
+  rules:
+    - if: $CI_COMMIT_TAG
