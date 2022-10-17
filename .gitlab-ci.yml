@@ -96,14 +96,14 @@ gitlab-release:
 
 deploy-github:
   image:
-    name: $IMAGE_NODE
+    name: $IMAGE_GIT
     entrypoint: [""]
   stage: deploy
   before_script:
     - git clone "https://${GITLAB_USERNAME}:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "${CI_COMMIT_SHA}"
     - cd "${CI_COMMIT_SHA}"
-    - git config user.email "${GITHUB_EMAIL}"
-    - git config user.name "${GITHUB_USER}"
+    - git config --global user.email "${GITHUB_EMAIL}"
+    - git config --global user.name "${GITHUB_USER}"
     - git remote add github "https://${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git"
   script:
     - git push github main
