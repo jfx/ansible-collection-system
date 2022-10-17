@@ -40,7 +40,7 @@ lint-markdown:
   before_script:
     - sh -c "$(wget -qO - https://taskfile.dev/install.sh)" -- -d
     - ./bin/task --version
-    - wget -c -q --show-progress -O Taskfile.yml https://gitlab.com/op_so/task/task-templates/-/raw/main/Taskfile.dist.yml
+    - wget -c -q -O Taskfile.yml https://gitlab.com/op_so/task/task-templates/-/raw/main/Taskfile.dist.yml
     - ./bin/task 00:00-init-task
   script:
     - ./bin/task lint:markdown G="\"**/*.md\" \"#node_modules\" \"#.node_cache\""
@@ -55,7 +55,7 @@ lint-yaml:
   before_script:
     - sh -c "$(wget -qO - https://taskfile.dev/install.sh)" -- -d
     - ./bin/task --version
-    - wget -c -q --show-progress -O Taskfile.yml https://gitlab.com/op_so/task/task-templates/-/raw/main/Taskfile.dist.yml
+    - wget -c -q -O Taskfile.yml https://gitlab.com/op_so/task/task-templates/-/raw/main/Taskfile.dist.yml
     - ./bin/task 00:00-init-task
   script:
     - ./bin/task lint:yaml
