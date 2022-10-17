@@ -2,7 +2,7 @@
 variables:
   GITHUB_EMAIL: $GITLAB_USER_EMAIL
   GITHUB_REPO: ansible-os-update
-  GITHUB_USER: jfxs
+  GITHUB_USER: jfx
   IMAGE_ANSIBLE: jfxs/ansible
   IMAGE_DEFAULT: alpine:latest
   IMAGE_GIT: alpine/git
