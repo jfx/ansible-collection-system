@@ -26,7 +26,7 @@
         {
           "assets": [
             {
-              "path": "role/"
+              "path": "update/"
             }
           ]
         }
@@ -40,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ttps://gitlab.com/op_so/ansible/ansible-update.git"
+    "url": "git+ttps://gitlab.com/op_so/ansible/os-update.git"
   },
   "author": "FX Soubirou",
   "license": "MIT",
