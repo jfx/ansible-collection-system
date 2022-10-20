@@ -8,7 +8,7 @@ An [Ansible](https://www.ansible.com/) role that update/upgrade Ubuntu and Debia
 
 The main repository: [Gitlab](https://gitlab.com/op_so/ansible/os-update)
 
-[Ansible Galaxy](https://galaxy.ansible.com/jfx/os-update) deployment repository: [Github](https://github.com/jfx/ansible-os-update)
+[Ansible Galaxy](https://galaxy.ansible.com/jfx/os_update) deployment repository: [Github](https://github.com/jfx/ansible-role-os-update)
 
 ## Getting Started
 
@@ -20,10 +20,10 @@ In order to use:
 
 ### Installation
 
-* Download the `os-update` role:
+* Download the `os_update` role:
 
 ```shell
-ansible-galaxy install jfx.update
+ansible-galaxy install jfx.os_update
 ```
 
 * Insert the role in the Ansible `playbook`:
@@ -33,7 +33,7 @@ example:
 ```yaml
 - hosts: all
   roles:
-    - jfx.update
+    - jfx.os_update
 ```
 
 ## Authors

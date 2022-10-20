@@ -1,5 +1,7 @@
 ---
 galaxy_info:
+  role_name: os_update
+  namespace: jfx
   author: FX Soubirou
   description: Ansible role that update/upgrade Ubuntu and Debian Operating Systems.
 
