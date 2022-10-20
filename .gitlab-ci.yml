@@ -101,7 +101,14 @@ deploy-github:
     name: $IMAGE_GIT
     entrypoint: [""]
   stage: deploy
+  before_script:
+    - git clone "${GITLAB_REPO}" "${CI_COMMIT_SHA}"
+    - cd "${CI_COMMIT_SHA}"
+    - git config user.email "${GITHUB_EMAIL}"
+    - git config user.name "${GITHUB_USER}"
+    - git remote add github "https://${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git"
   script:
-    - ./push2github.sh ${GITHUB_TOKEN}
+    - git push github --tags
+    - git push github main
   rules:
     - if: $CI_COMMIT_TAG
