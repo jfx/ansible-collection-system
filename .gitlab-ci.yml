@@ -102,7 +102,7 @@ deploy-github:
     entrypoint: [""]
   stage: deploy
   before_script:
-    - git clone "https://${GITLAB_USERNAME}:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "${CI_COMMIT_SHA}"
+    - git clone "${GITLAB_REPO}" "${CI_COMMIT_SHA}"
     - cd "${CI_COMMIT_SHA}"
     - git config user.email "${GITHUB_EMAIL}"
     - git config user.name "${GITHUB_USER}"
