@@ -6,9 +6,9 @@
 
 An [Ansible](https://www.ansible.com/) role that update/upgrade Ubuntu and Debian Operating Systems.
 
-The main repository: [Gitlab](https://gitlab.com/op_so/ansible/os-update)
+[![Gitlab](https://shields.io/badge/Gitlab-informational?logo=gitlab&style=flat-square)](https://gitlab.com/op_so/ansible/os-update) The main repository
 
-[Ansible Galaxy](https://galaxy.ansible.com/jfx/os_update) deployment repository: [Github](https://github.com/jfx/ansible-role-os-update)
+[![Github](https://shields.io/badge/Github-informational?logo=github&style=flat-square)](https://github.com/jfx/ansible-role-os-update) [Ansible Galaxy](https://galaxy.ansible.com/jfx/os_update) deployment repository
 
 ## Getting Started
 
