@@ -4,11 +4,9 @@
     update-cache: true
   changed_when: false
 
-- name: Upgrade and cleanup
+- name: Upgrade
   ansible.builtin.apt:
     upgrade: dist
-    autoclean: true
-    autoremove: true
 
 - name: Install system packages
   ansible.builtin.apt:
@@ -18,3 +16,9 @@
       - lsb-release
       - software-properties-common
     state: latest
+
+- name: Cleanup
+  ansible.builtin.apt:
+    autoclean: true
+    autoremove: true
+  changed_when: false

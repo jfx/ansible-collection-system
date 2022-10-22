@@ -1,12 +1,7 @@
 ---
 variables:
-  GITHUB_EMAIL: $GITLAB_USER_EMAIL
-  GITHUB_REPO: ansible-os-update
-  GITHUB_USER: jfx
-  GITLAB_REPO: https://gitlab.com/op_so/ansible/os-update.git
   IMAGE_ANSIBLE: jfxs/ansible
   IMAGE_DEFAULT: alpine:latest
-  IMAGE_GIT: alpine/git
   IMAGE_MARKDOWNLINT: davidanson/markdownlint-cli2
   IMAGE_NODE: node:lts-bullseye
   IMAGE_YAMLLINT: jfxs/ansible
