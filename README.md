@@ -6,9 +6,11 @@
 
 An [Ansible](https://www.ansible.com/) role that update/upgrade Ubuntu and Debian Operating Systems.
 
-[![Gitlab](https://shields.io/badge/Gitlab-informational?logo=gitlab&style=flat-square)](https://gitlab.com/op_so/ansible/os-update) The main repository
+[![GitLab](https://shields.io/badge/Gitlab-informational?logo=gitlab&style=flat-square)](https://gitlab.com/op_so/ansible/os-update) The main repository.
 
-[![Github](https://shields.io/badge/Github-informational?logo=github&style=flat-square)](https://github.com/jfx/ansible-role-os-update) [Ansible Galaxy](https://galaxy.ansible.com/jfx/os_update) deployment repository
+[![Github](https://shields.io/badge/Github-informational?logo=github&style=flat-square)](https://github.com/jfx/ansible-role-os-update) Deployment repository.
+
+[![Ansible Galaxy](https://shields.io/badge/Ansible_Galaxy-informational?logo=ansible&style=flat-square)](https://galaxy.ansible.com/jfx/os_update) Ansible Galaxy role.
 
 ## Getting Started
 
@@ -38,7 +40,7 @@ example:
 
 ## Authors
 
-* **FX Soubirou** - *Initial work* - [Gitlab repositories](https://gitlab.com/op_so)
+* **FX Soubirou** - *Initial work* - [GitLab repositories](https://gitlab.com/op_so)
 
 ## License
 

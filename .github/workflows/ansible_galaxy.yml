@@ -1,7 +1,10 @@
 ---
 name: Publish to Galaxy
 
-on: [push]  # yamllint disable-line rule:truthy
+on:  # yamllint disable-line rule:truthy
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
