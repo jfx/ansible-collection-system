@@ -11,6 +11,7 @@ vars:
   # TO MODIFY: Task templates to download separated by comma
   # Example: TASK_TEMPLATES: go,lint,yarn
   TASK_TEMPLATES: ansible,git,lint,yarn
+  COLLECTION_DIR: jfx/system
 
 tasks:
 
@@ -36,6 +37,7 @@ tasks:
     cmds:
       - date > {{.FILE_TASK_START}}
       - defer: rm -f {{.FILE_TASK_START}}
+      - cp -f README.md {{.COLLECTION_DIR}}/README.md
       - task lint:all MEX='\"#node_modules\" \"#.node_cache\"'
       - task 00:10-ansible-test
       - echo "" && echo "Checks Start $(cat {{.FILE_TASK_START}}) - End $(date)"

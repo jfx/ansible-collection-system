@@ -21,9 +21,10 @@ galaxy_info:
         - bullseye
 
   galaxy_tags:
-    - system
-    - security
-    - ubuntu
     - debian
+    - security
+    - system
+    - ubuntu
+
 
 dependencies: []

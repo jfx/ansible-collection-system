@@ -1,0 +1,35 @@
+---
+namespace: jfx
+
+name: system
+
+version: 2.0.0
+
+readme: README.md
+
+authors:
+  - FX Soubirou <soubirou@yahoo.fr>
+
+### OPTIONAL but strongly recommended
+description: a collections that update Ubuntu and Debian Operating Systems.
+
+license:
+  - MIT
+
+tags:
+  - debian
+  - security
+  - system
+  - ubuntu
+
+dependencies: {}
+
+repository: https://gitlab.com/op_so/ansible/system
+
+documentation: https://gitlab.com/op_so/ansible/system/-/blob/main/README.md
+
+homepage: https://gitlab.com/op_so/ansible/system
+
+issues: https://gitlab.com/op_so/ansible/system/-/issues
+
+build_ignore: []

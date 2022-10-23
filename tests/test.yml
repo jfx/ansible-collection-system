@@ -4,4 +4,4 @@
   remote_user: root
 
   roles:
-    - role: 'os_update'
+    - role: 'jfx/system/roles/os_update'
