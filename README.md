@@ -1,7 +1,7 @@
-# Ansible OS update role
+# Ansible collection System
 
 [![Software License](https://img.shields.io/badge/license-MIT-informational.svg?style=flat)](LICENSE)
-[![Pipeline Status](https://gitlab.com/op_so/ansible/system/badges/main/pipeline.svg)](https://gitlab.com/op_so/ansible/os-update/pipelines)
+[![Pipeline Status](https://gitlab.com/op_so/ansible/system/badges/main/pipeline.svg)](https://gitlab.com/op_so/ansible/system/pipelines)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 An [Ansible](https://www.ansible.com/) collections that update Ubuntu and Debian Operating Systems.
