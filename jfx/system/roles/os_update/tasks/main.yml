@@ -1,5 +1,5 @@
 ---
-- name: Update
+- name: Update all
   ansible.builtin.apt:
     update-cache: true
   changed_when: false
@@ -15,7 +15,7 @@
       - ca-certificates
       - lsb-release
       - software-properties-common
-    state: latest
+    state: latest  # noqa package-latest
 
 - name: Cleanup
   ansible.builtin.apt:
