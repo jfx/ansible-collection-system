@@ -1,7 +1,7 @@
 {
   "name": "ansible-os-update",
   "version": "0.0.0-semantic-release",
-  "description": "Ansible role that update/upgrade Ubuntu and Debian Operating Systems",
+  "description": "Ansible collections that update Ubuntu and Debian Operating Systems",
   "engines": {
     "node": ">=12.0",
     "yarn": ">=1.17"

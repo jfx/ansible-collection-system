@@ -14,7 +14,28 @@ An [Ansible](https://www.ansible.com/) collections that update Ubuntu and Debian
 
 This collections includes:
 
-* `os_update`: a role that update/upgrade Ubuntu and Debian Operating Systems.
+## `os_update`
+
+A role that update/upgrade Ubuntu and Debian Operating Systems.
+
+### `os_update_upgrade` role variables
+
+- `os_update_upgrade`
+  - Default: `dist`
+  - Description: Upgrade level, mainly `no`, `safe` or `dist`.
+
+## `reboot`
+
+A role that reboot Ubuntu and Debian Operating Systems.
+
+### `reboot` role variables
+
+- `reboot_timeout`
+  - Default: `300`
+  - Description: Timeout of reboot in seconds.
+- `reboot_force`
+  - Default: `false`
+  - Description: Force system to reboot.
 
 ## Getting Started
 
@@ -22,17 +43,17 @@ This collections includes:
 
 In order to use:
 
-* Minimal Ansible version: 2.10
+- Minimal Ansible version: 2.10
 
 ### Installation
 
-* Download the `jfx.system` collection:
+- Download the `jfx.system` collection:
 
 ```shell
 ansible-galaxy collection install jfx.system
 ```
 
-* Then use the roles from the collection in the playbook:
+- Then use the roles from the collection in the playbook:
 
 example:
 
@@ -44,11 +65,16 @@ example:
 
   roles:
     - os_update
+      vars:
+        os_update_upgrade: safe
+    - reboot
+      vars:
+        reboot_timeout: 120
 ```
 
 ## Authors
 
-* **FX Soubirou** - *Initial work* - [GitLab repositories](https://gitlab.com/op_so)
+- **FX Soubirou** - *Initial work* - [GitLab repositories](https://gitlab.com/op_so)
 
 ## License
 

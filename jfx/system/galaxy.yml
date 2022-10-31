@@ -10,7 +10,6 @@ readme: README.md
 authors:
   - FX Soubirou <soubirou@yahoo.fr>
 
-### OPTIONAL but strongly recommended
 description: a collections that update Ubuntu and Debian Operating Systems.
 
 license:

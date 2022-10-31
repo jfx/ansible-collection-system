@@ -28,8 +28,9 @@ tasks:
   10-ansible-test:
     desc: "[PROJECT] Ansible tests."
     cmds:
-      - task ansible:playbook A="tests/test.yml -i tests/inventory --syntax-check"
-      - task ansible:lint A="--force-color --offline -p tests/test.yml"
+      - task ansible:playbook A="tests/local/test.yml -i tests/local/inventory --syntax-check"
+      - task ansible:lint A="--force-color --offline -p tests/local/test.yml"
+      - task ansible:playbook A="tests/remote/test.yml -i tests/remote/inventory"
     silent: true
 
   20-pre-commit:

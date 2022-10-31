@@ -6,7 +6,7 @@
 
 - name: Upgrade
   ansible.builtin.apt:
-    upgrade: dist
+    upgrade: "{{ os_update_upgrade }}"
 
 - name: Install system packages
   ansible.builtin.apt:
@@ -20,4 +20,4 @@
 - name: Cleanup
   ansible.builtin.apt:
     autoclean: true
-    autoremove: trues
+    autoremove: true

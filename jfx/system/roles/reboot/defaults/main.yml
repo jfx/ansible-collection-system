@@ -1,0 +1,3 @@
+---
+reboot_timeout: 300
+reboot_force: false

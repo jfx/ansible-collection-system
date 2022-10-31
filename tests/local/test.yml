@@ -5,3 +5,4 @@
 
   roles:
     - role: 'jfx/system/roles/os_update'
+    - role: 'jfx/system/roles/reboot'
