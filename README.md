@@ -18,7 +18,7 @@ This collections includes:
 
 A role that update/upgrade Ubuntu and Debian Operating Systems.
 
-### `os_update_upgrade` role variables
+### `os_update` role variables
 
 - `os_update_upgrade`
   - Default: `dist`
@@ -70,6 +70,7 @@ example:
     - reboot
       vars:
         reboot_timeout: 120
+        reboot_force: true
 ```
 
 ## Authors
