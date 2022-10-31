@@ -25,11 +25,16 @@ tasks:
       - task 20-t-download
     silent: true
 
-  10-ansible-test:
-    desc: "[PROJECT] Ansible tests."
+  10-ansible-test-local:
+    desc: "[PROJECT] Ansible tests local."
     cmds:
       - task ansible:playbook A="tests/local/test.yml -i tests/local/inventory --syntax-check"
       - task ansible:lint A="--force-color --offline -p tests/local/test.yml"
+    silent: true
+
+  10-ansible-test-remote:
+    desc: "[PROJECT] Ansible tests remote (VM)."
+    cmds:
       - task ansible:playbook A="tests/remote/test.yml -i tests/remote/inventory"
     silent: true
 
@@ -40,6 +45,6 @@ tasks:
       - defer: rm -f {{.FILE_TASK_START}}
       - cp -f README.md {{.COLLECTION_DIR}}/README.md
       - task lint:all MEX='\"#node_modules\" \"#.node_cache\"'
-      - task 00:10-ansible-test
+      - task 00:10-ansible-test-local
       - echo "" && echo "Checks Start $(cat {{.FILE_TASK_START}}) - End $(date)"
     silent: true
