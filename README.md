@@ -14,21 +14,21 @@ An [Ansible](https://www.ansible.com/) collections that update Ubuntu and Debian
 
 This collections includes:
 
-## `os_update`
+## os_update role
 
 A role that update/upgrade Ubuntu and Debian Operating Systems.
 
-### `os_update` role variables
+### os_update role variables
 
 - `os_update_upgrade`
   - Default: `dist`
   - Description: Upgrade level, mainly `no`, `safe` or `dist`.
 
-## `reboot`
+## reboot role
 
 A role that reboot Ubuntu and Debian Operating Systems.
 
-### `reboot` role variables
+### reboot role variables
 
 - `reboot_timeout`
   - Default: `300`
@@ -36,6 +36,35 @@ A role that reboot Ubuntu and Debian Operating Systems.
 - `reboot_force`
   - Default: `false`
   - Description: Force system to reboot.
+
+## install_opt role
+
+A role to download and install a product in /opt directory with the following structure: `/opt/<product_name>/v<version>/<product_name>`.
+Two symlinks are also created, if `io_deploy` variable is `true` (default value):
+
+- `/usr/local/bin/<product_name> -> /opt/<product_name>/current/<product_name>`
+- `/opt/<product_name>/current/ -> /opt/<product_name>/v<version>/`
+
+### install_opt role variables
+
+- `io_product`
+  - Required - example: `prometheus`
+  - Description: Name of th product.
+- `io_version`
+  - Required - example: `2.40.1`
+  - Description: Version of the product.
+- `io_package_name`
+  - Required - example: `prometheus-2.40.1.linux-amd64`
+  - Description: Package name to download without extension.
+- `io_package_ext`
+  - Default: "" - example: `tar.gz`
+  - Description: Define the type of compression. "" for no compression.
+- `io_download_link`
+  - Required - example: `https://github.com/prometheus/prometheus/releases/download/v2.40.1/{{ io_package_name }}.{{ io_package_ext }}`
+  - Description: URL to download product.
+- `io_deploy`
+  - Default: `true`
+  - Description: Creation of 2 links to point to the new version.
 
 ## Getting Started
 
