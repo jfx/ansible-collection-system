@@ -37,7 +37,7 @@ example:
         reboot_force: true
 ```
 
-### `reboot` role variables
+### reboot role variables
 
 * `reboot_timeout`
   * Default: `300`

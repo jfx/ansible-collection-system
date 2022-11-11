@@ -100,6 +100,13 @@ example:
       vars:
         reboot_timeout: 120
         reboot_force: true
+    - role: install_opt
+      vars:
+        io_product: prometheus
+        io_version: "{{ prometheus_version }}"
+        io_package_name: prometheus-{{ prometheus_version }}.linux-{{ arch }}
+        io_package_ext: tar.gz
+        io_download_link: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/{{ io_package_name }}.{{ io_package_ext }}
 ```
 
 ## Authors

@@ -36,7 +36,7 @@ example:
         os_update_upgrade: safe
 ```
 
-### `os_update` role variables
+### os_update role variables
 
 * `os_update_upgrade`
   * Default: `dist`
