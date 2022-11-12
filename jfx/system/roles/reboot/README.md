@@ -1,6 +1,6 @@
 # Ansible reboot role
 
-A role that update/upgrade Ubuntu and Debian Operating Systems.
+A role that reboot Ubuntu and Debian Operating Systems.
 
 [![Ansible Galaxy](https://shields.io/badge/Ansible_Galaxy-informational?logo=ansible&style=flat-square)](https://galaxy.ansible.com/jfx/system) Ansible Galaxy collection.
 

@@ -4,7 +4,7 @@
 [![Pipeline Status](https://gitlab.com/op_so/ansible/system/badges/main/pipeline.svg)](https://gitlab.com/op_so/ansible/system/pipelines)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
-An [Ansible](https://www.ansible.com/) collections that update Ubuntu and Debian Operating Systems.
+An [Ansible](https://www.ansible.com/) collection that update Ubuntu and Debian Operating Systems.
 
 [![GitLab](https://shields.io/badge/Gitlab-informational?logo=gitlab&style=flat-square)](https://gitlab.com/op_so/ansible/system) The main repository.
 
@@ -36,35 +36,6 @@ A role that reboot Ubuntu and Debian Operating Systems.
 - `reboot_force`
   - Default: `false`
   - Description: Force system to reboot.
-
-## install_opt role
-
-A role to download and install a product in /opt directory with the following structure: `/opt/<product_name>/v<version>/<product_name>`.
-Two symlinks are also created, if `io_deploy` variable is `true` (default value):
-
-- `/usr/local/bin/<product_name> -> /opt/<product_name>/current/<product_name>`
-- `/opt/<product_name>/current/ -> /opt/<product_name>/v<version>/`
-
-### install_opt role variables
-
-- `io_product`
-  - Required - example: `prometheus`
-  - Description: Name of th product.
-- `io_version`
-  - Required - example: `2.40.1`
-  - Description: Version of the product.
-- `io_package_name`
-  - Required - example: `prometheus-2.40.1.linux-amd64`
-  - Description: Package name to download without extension.
-- `io_package_ext`
-  - Default: "" - example: `tar.gz`
-  - Description: Define the type of compression. "" for no compression.
-- `io_download_link`
-  - Required - example: `https://github.com/prometheus/prometheus/releases/download/v2.40.1/{{ io_package_name }}.{{ io_package_ext }}`
-  - Description: URL to download product.
-- `io_deploy`
-  - Default: `true`
-  - Description: Creation of 2 links to point to the new version.
 
 ## Getting Started
 
@@ -100,6 +71,13 @@ example:
       vars:
         reboot_timeout: 120
         reboot_force: true
+    - role: install_opt
+      vars:
+        io_product: prometheus
+        io_version: "{{ prometheus_version }}"
+        io_package_name: prometheus-{{ prometheus_version }}.linux-{{ arch }}
+        io_package_ext: tar.gz
+        io_download_link: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/{{ io_package_name }}.{{ io_package_ext }}
 ```
 
 ## Authors

@@ -1,5 +1,5 @@
 {
-  "name": "ansible-os-update",
+  "name": "ansible-system",
   "version": "0.0.0-semantic-release",
   "description": "Ansible collections that update Ubuntu and Debian Operating Systems",
   "engines": {
