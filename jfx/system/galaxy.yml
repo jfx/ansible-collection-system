@@ -10,7 +10,7 @@ readme: README.md
 authors:
   - FX Soubirou <soubirou@yahoo.fr>
 
-description: a collection that update/install Ubuntu and Debian Operating Systems.
+description: a collection that update Ubuntu and Debian Operating Systems.
 
 license:
   - MIT

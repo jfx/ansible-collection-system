@@ -1,0 +1,5 @@
+---
+ufw_policy_incoming: deny
+ufw_policy_outgoing: allow
+ufw_logging: on  # yamllint disable-line rule:truthy
+ufw_default_protocol: tcp

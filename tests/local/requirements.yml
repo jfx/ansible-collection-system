@@ -1,0 +1,6 @@
+---
+collections:
+  - community.general
+  - jfx.system
+  - jfx.common
+  - jfx.metrics

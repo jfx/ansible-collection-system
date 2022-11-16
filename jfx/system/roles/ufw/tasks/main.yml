@@ -1,0 +1,40 @@
+---
+- name: Install ufw
+  ansible.builtin.apt:
+    pkg:
+      - ufw
+    update_cache: true
+    state: latest  # noqa package-latest
+
+- name: Configure incoming policy
+  community.general.ufw:
+    policy: "{{ ufw_policy_incoming }}"
+    direction: incoming
+  notify: Reload ufw
+
+- name: Configure outgoing policy
+  community.general.ufw:
+    policy: "{{ ufw_policy_outgoing }}"
+    direction: outgoing
+  notify: Reload ufw
+
+- name: Configure logging
+  community.general.ufw:
+    logging: "{{ ufw_logging }}"
+  notify: Reload ufw
+
+- name: Configure rules
+  community.general.ufw:
+    rule: "{{ item.rule }}"
+    direction: "{{ item.direction | default('in') }}"
+    protocol: "{{ item.protocol | default(ufw_default_protocol) }}"
+    from_ip: "{{ item.from_ip | default('any') }}"
+    to_ip: "{{ item.to_ip | default('any') }}"
+    from_port: "{{ item.from_port | default('') }}"
+    to_port: "{{ item.to_port | default('') }}"
+    interface: "{{ item.interface | default('') }}"
+    route: "{{ item.route | default(false) }}"
+    log: "{{ item.log | default(false) }}"
+    comment: "{{ item.comment | default(omit) }}"
+  with_items: "{{ ufw_rules }}"
+  notify: Reload ufw

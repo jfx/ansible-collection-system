@@ -40,12 +40,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ttps://gitlab.com/op_so/ansible/os-update.git"
+    "url": "git+ttps://gitlab.com/op_so/ansible/system.git"
   },
   "author": "FX Soubirou",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/op_so/ansible/os-update/issues"
+    "url": "https://gitlab.com/op_so/ansible/system/issues"
   },
-  "homepage": "https://gitlab.com/op_so/ansible/os-update"
+  "homepage": "https://gitlab.com/op_so/ansible/system"
 }

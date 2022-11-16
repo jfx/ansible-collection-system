@@ -3,6 +3,10 @@
   hosts: localhost
   remote_user: root
 
+  collections:
+    - community.general
+
   roles:
     - role: 'jfx/system/roles/os_update'
     - role: 'jfx/system/roles/reboot'
+    - role: 'jfx/system/roles/ufw'

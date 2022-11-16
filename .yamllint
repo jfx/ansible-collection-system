@@ -2,6 +2,7 @@
 extends: default
 
 ignore: |
+  .ansible/
   .node_cache/
   node_modules/
   Taskfile.d/

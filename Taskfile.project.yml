@@ -28,6 +28,7 @@ tasks:
   10-ansible-test-local:
     desc: "[PROJECT] Ansible tests local."
     cmds:
+      - task ansible:galaxy-install R=tests/local/requirements.yml F=Y
       - task ansible:playbook A="tests/local/test.yml -i tests/local/inventory --syntax-check"
       - task ansible:lint A="--force-color --offline -p tests/local/test.yml"
     silent: true
@@ -44,7 +45,7 @@ tasks:
       - date > {{.FILE_TASK_START}}
       - defer: rm -f {{.FILE_TASK_START}}
       - cp -f README.md {{.COLLECTION_DIR}}/README.md
-      - task lint:all MEX='\"#node_modules\" \"#.node_cache\"'
+      - task lint:all MEX='\"#node_modules\" \"#.node_cache\" \"#.ansible\"'
       - task 00:10-ansible-test-local
       - echo "" && echo "Checks Start $(cat {{.FILE_TASK_START}}) - End $(date)"
     silent: true

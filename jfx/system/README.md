@@ -26,7 +26,7 @@ A role that update/upgrade Ubuntu and Debian Operating Systems.
 
 ## reboot role
 
-A role that reboot Ubuntu and Debian Operating Systems.
+A role that reboots Ubuntu and Debian Operating Systems.
 
 ### reboot role variables
 
@@ -36,6 +36,37 @@ A role that reboot Ubuntu and Debian Operating Systems.
 - `reboot_force`
   - Default: `false`
   - Description: Force system to reboot.
+
+## ufw role
+
+A role that configures UFW Firewall Ubuntu and Debian Operating Systems.
+
+### ufw role variables
+
+- `ufw_policy_incoming`
+  - Default: `deny`
+  - Description: Incoming policy.
+- `ufw_policy_outgoing`
+  - Default: `allow`
+  - Description: Outgoing policy.
+- `ufw_logging`
+  - Default: `on`
+  - Description: Log in syslog. Possible value: on, off, low, medium, high, full
+
+```yaml
+ufw_rules:
+  - rule: allow  # firewall rule: allow, deny, limit, reject (required)
+    direction: in  # in, incoming, out, outgoing, routed (required)
+    protocol: tcp  # TCP/IP protocol: any, tcp, udp, ipv6, esp, ah, gre, igmp. Default tcp
+    from_ip: 192.168.0.0/16  # source network or IP, default any
+    to_ip: 1.2.3.4  # to network or IP, default any
+    from_port: 60000:61000  # Source port or source range port
+    to_port: '4000'  # Destination port or destination range port
+    interface: eth0  # interface for the rule
+    route: false  # Apply the rule to routed/forwarded packets, default: false
+    log: false  # Log new connections matched to this rule, default: false
+    comment: "A comment for this rule"  # Requires UFW version >=0.35.
+```
 
 ## Getting Started
 
@@ -47,9 +78,10 @@ In order to use:
 
 ### Installation
 
-- Download the `jfx.system` collection:
+- Download the `jfx.system` and `community.general` collections:
 
 ```shell
+ansible-galaxy collection install community.general
 ansible-galaxy collection install jfx.system
 ```
 
@@ -61,6 +93,7 @@ example:
 - hosts: all
 
   collections:
+    - community.general
     - jfx.system
 
   roles:
@@ -71,13 +104,15 @@ example:
       vars:
         reboot_timeout: 120
         reboot_force: true
-    - role: install_opt
+    - ufw
       vars:
-        io_product: prometheus
-        io_version: "{{ prometheus_version }}"
-        io_package_name: prometheus-{{ prometheus_version }}.linux-{{ arch }}
-        io_package_ext: tar.gz
-        io_download_link: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/{{ io_package_name }}.{{ io_package_ext }}
+        ufw_rules:
+          - rule: allow
+            protocol: tcp
+            to_port: 22
+            comment: 'Incoming connection on ssh port'
+          - rule: allow
+            ...
 ```
 
 ## Authors

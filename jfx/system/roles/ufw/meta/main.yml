@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  role_name: ufw
+  namespace: jfx
+  author: FX Soubirou
+  description: Ansible role that configures UFW Firewall on Ubuntu and Debian Operating Systems.
+
+  license: MIT
+
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+        - jammy
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+
+  galaxy_tags:
+    - debian
+    - security
+    - system
+    - ubuntu
+
+
+dependencies: []
