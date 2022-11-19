@@ -21,7 +21,7 @@ ansible-galaxy collection install jfx.system
 ansible-galaxy collection install community.general
 ```
 
-* Then use the roles from the collection in the playbook:
+* Then use the role from the collection in the playbook:
 
 example:
 

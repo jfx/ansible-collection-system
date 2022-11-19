@@ -1,0 +1,21 @@
+
+Username        {{ cntlm_username }}
+Domain          {{ cntlm_domain }}
+
+Auth            NTLMv2
+PassNTLMv2      {{ cntlm_pass_ntlmv2 }}
+
+{% for proxy in cntlm_proxies %}
+Proxy           {{ proxy }}
+{% endfor %}
+NoProxy         {{ cntlm_no_proxy }}
+
+Listen          {{ cntlm_listen }}
+Gateway         {{ cntlm_gateway }}
+
+{% for allow in cntlm_allow %}
+Allow           {{ allow }}
+{% endfor %}
+{% for deny in cntlm_deny %}
+Deny            {{ deny }}
+{% endfor %}

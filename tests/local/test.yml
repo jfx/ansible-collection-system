@@ -7,6 +7,8 @@
     - community.general
 
   roles:
+    - role: 'jfx/system/roles/apt_proxy'
+    - role: 'jfx/system/roles/cntlm'
     - role: 'jfx/system/roles/os_update'
     - role: 'jfx/system/roles/reboot'
     - role: 'jfx/system/roles/ufw'

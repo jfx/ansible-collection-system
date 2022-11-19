@@ -1,0 +1,53 @@
+---
+- name: Check if cntlm is installed
+  ansible.builtin.package:
+    name: cntlm
+    state: present
+  check_mode: true
+  register: cntlm_check
+
+- name: Create temporary directory
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: temp
+  register: temp_dir
+  when: cntlm_check is changed  # noqa no-handler
+
+- name: Copy cntlm package
+  ansible.builtin.copy:
+    src: "{{ cntlm_package }}"
+    dest: "{{ temp_dir.path }}/{{ cntlm_package }}"
+    owner: root
+    group: root
+    mode: '0644'
+  when: cntlm_check is changed  # noqa no-handler
+
+- name: Install cntlm package
+  ansible.builtin.apt:
+    deb: "{{ temp_dir.path }}/{{ cntlm_package }}"
+  when: cntlm_check is changed  # noqa no-handler
+
+- name: Remove the temporary directory
+  ansible.builtin.file:
+    path: "{{ temp_dir.path }}"
+    state: absent
+  when: temp_dir.path is defined
+
+- name: Configure cntlm
+  ansible.builtin.template:
+    src: "cntlm.conf.j2"
+    dest: /etc/cntlm.conf
+    owner: root
+    group: root
+    mode: '0600'
+  notify:
+    - Restart cntlm
+
+- name: Flush_handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Start or stop cntlm
+  ansible.builtin.systemd:
+    name: cntlm
+    state: "{{ cntlm_status }}"
+    enabled: "{{ cntlm_at_boot }}"

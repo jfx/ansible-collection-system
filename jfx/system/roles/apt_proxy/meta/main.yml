@@ -1,9 +1,9 @@
 ---
 galaxy_info:
-  role_name: os_update
+  role_name: apt_proxy
   namespace: jfx
   author: FX Soubirou
-  description: Ansible role that updates/upgrades Ubuntu and Debian Operating Systems.
+  description: Ansible role that configure or unconfigure a proxy for apt on Ubuntu and Debian Operating Systems.
 
   license: MIT
 
@@ -21,8 +21,9 @@ galaxy_info:
         - bullseye
 
   galaxy_tags:
+    - apt
     - debian
-    - security
+    - proxy
     - system
     - ubuntu
 

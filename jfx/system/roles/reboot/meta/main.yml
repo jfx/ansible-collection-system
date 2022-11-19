@@ -3,7 +3,7 @@ galaxy_info:
   role_name: reboot
   namespace: jfx
   author: FX Soubirou
-  description: Ansible role that reboot Ubuntu and Debian Operating Systems.
+  description: Ansible role that reboots Ubuntu and Debian Operating Systems.
 
   license: MIT
 

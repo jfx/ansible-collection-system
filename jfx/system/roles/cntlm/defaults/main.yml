@@ -1,0 +1,15 @@
+---
+cntlm_arch: amd64
+cntlm_package: cntlm_0.92.3_{{ cntlm_arch }}.deb
+cntlm_at_boot: false
+cntlm_username: testuser
+cntlm_domain: corp-uk
+cntlm_pass_ntlmv2: WRONGHASH6E9C80B53397D5C07BBCB
+cntlm_proxies:
+  - 10.0.0.41:8080
+cntlm_no_proxy: localhost, 127.0.0.*, 10.*, 192.168.*
+cntlm_listen: 3128
+cntlm_gateway: 'no'
+cntlm_allow: {}
+cntlm_deny: {}
+cntlm_status: started

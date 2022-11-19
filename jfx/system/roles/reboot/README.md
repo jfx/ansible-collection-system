@@ -1,6 +1,6 @@
 # Ansible reboot role
 
-A role that reboot Ubuntu and Debian Operating Systems.
+A role that reboots Ubuntu and Debian Operating Systems.
 
 [![Ansible Galaxy](https://shields.io/badge/Ansible_Galaxy-informational?logo=ansible&style=flat-square)](https://galaxy.ansible.com/jfx/system) Ansible Galaxy collection.
 
@@ -20,7 +20,7 @@ In order to use:
 ansible-galaxy collection install jfx.system
 ```
 
-* Then use the roles from the collection in the playbook:
+* Then use the role from the collection in the playbook:
 
 example:
 

@@ -1,6 +1,6 @@
-# Ansible OS update role
+# Ansible apt proxy role
 
-A role that updates/upgrades Ubuntu and Debian Operating Systems.
+A role that configure or unconfigure a proxy for apt on Ubuntu and Debian Operating Systems.
 
 [![Ansible Galaxy](https://shields.io/badge/Ansible_Galaxy-informational?logo=ansible&style=flat-square)](https://galaxy.ansible.com/jfx/system) Ansible Galaxy collection.
 
@@ -31,16 +31,19 @@ example:
     - jfx.system
 
   roles:
-    - os_update
+    - apt_proxy
       vars:
-        os_update_upgrade: safe
+        apt_proxy_url: http://proxy_host:proxy_port/
 ```
 
-### os_update role variables
+### apt_proxy role variables
 
-* `os_update_upgrade`
-  * Default: `dist`
-  * Description: Upgrade level, mainly `no`, `safe` or `dist`.
+* `apt_proxy_url`
+  * Required
+  * Description: URL of the proxy, format: `http://proxy_host:proxy_port/`
+* `apt_proxy_enabled`
+  * Default: `true`
+  * Description: Enable or disable the proxy configuration for apt.
 
 ## Authors
 
