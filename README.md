@@ -14,18 +14,25 @@ An [Ansible](https://www.ansible.com/) collection that update Ubuntu and Debian 
 
 This collections includes:
 
+| Roles                        | Description                                                                                  |
+| ---------------------------- | -------------------------------------------------------------------------------------------- |
+| [apt_proxy](#apt_proxy-role) | A role that configure or unconfigure a proxy for apt on Ubuntu and Debian Operating Systems. |
+| [cntlm](#cntlm-role)         | A role that install and configure cntlm on Ubuntu and Debian Operating Systems.              |
+| [info](#info-role)           | A role that diplays system informations from facts.                                          |
+| [os_update](#os_update-role) | A role that updates/upgrades Ubuntu and Debian Operating Systems.                            |
+| [reboot](#reboot-role)       | A role that reboots Ubuntu and Debian Operating Systems.                                     |
+| [ufw](#ufw-role)             | A role that configures UFW Firewall Ubuntu and Debian Operating Systems.                     |
+
 ## apt_proxy role
 
 A role that configure or unconfigure a proxy for apt on Ubuntu and Debian Operating Systems.
 
 ### apt_proxy role variables
 
-- `apt_proxy_url`
-  - Required
-  - Description: URL of the proxy, format: `http://proxy_host:proxy_port/`
-- `apt_proxy_enabled`
-  - Default: `true`
-  - Description: Enable or disable the proxy configuration for apt.
+| Variables           | Description                                                | Default  |
+| ------------------- | ---------------------------------------------------------- | -------- |
+| `apt_proxy_url`     | URL of the proxy, format: `http://proxy_host:proxy_port/`. | Required |
+| `apt_proxy_enabled` | Enable or disable the proxy configuration for apt.         | `true`   |
 
 ## cntlm role
 
@@ -33,42 +40,38 @@ A role that install and configure cntlm on Ubuntu and Debian Operating Systems.
 
 ### cntlm role variables
 
-- `cntlm_arch`
-  - Default: `amd64`
-  - Description: Binary architecture of cntlm amd64|arm64 ...
-- `cntlm_at_boot`
-  - Default: `false`
-  - Description: Start cntlm at boot true|false.
-- `cntlm_username`
-  - Required
-  - Description: Proxy username.
-- `cntlm_domain`
-  - Required
-  - Description: Proxy account domain/workgroup name.
-- `cntlm_pass_ntlmv2`
-  - Required
-  - Description: Hashes of the proxy account password. Get by the command: `cntlm -H -u <username> -d <domain> <proxy_host:port>`
-- `cntlm_proxies`
-  - Required
-  - Description: List of proxies `<proxy_host:port>`.
-- `cntlm_no_proxy`
-  - Default: `localhost, 127.0.0.*, 10.*, 192.168.*`
-  - Description: No proxy networks.
-- `cntlm_listen`
-  - Default: `3128`
-  - Description: Local port number for the cntlm `[<addr>:]<port_number>`.
-- `cntlm_gateway`
-  - Default: `no`
-  - Description: Gateway mode yes|no.
-- `cntlm_allow`
-  - Default: `false`
-  - Description: List of ACL allow rule.
-- `cntlm_deny`
-  - Default: `300`
-  - Description: List of ACL deny rule.
-- `cntlm_status`
-  - Default: `started`
-  - Description: Status of cntlm mainly `started|stopped`.
+| Variables           | Description                                               | Default                                 |
+| ------------------- | --------------------------------------------------------- | --------------------------------------- |
+| `cntlm_arch`        | Binary architecture of cntlm `amd64|arm64`;               | `amd64`                                 |
+| `cntlm_at_boot`     | Start cntlm at boot `true|false`.                         | `false`                                 |
+| `cntlm_username`    | Proxy username.                                           | Required                                |
+| `cntlm_domain`      | Proxy account domain/workgroup name.                      | Required                                |
+| `cntlm_pass_ntlmv2` | Hashes of the proxy account password.(*)                  | Required                                |
+| `cntlm_proxies`     | List of proxies `<proxy_host:port>`.                      | Required                                |
+| `cntlm_no_proxy`    | No proxy networks.                                        | `localhost, 127.0.0.*, 10.*, 192.168.*` |
+| `cntlm_listen`      | Local port number for the cntlm `[<addr>:]<port_number>`. | `3128`                                  |
+| `cntlm_gateway`     | Gateway mode `'yes'` or `'no'` (with single quote).       | `'no'`                                  |
+| `cntlm_allow`       | List of ACL allow rule.                                   | `{}`                                    |
+| `cntlm_deny`        | List of ACL deny rule.                                    | `{}`                                    |
+| `cntlm_status`      | Status of cntlm mainly `started|stopped`.                 | `started`                               |
+
+(*) To get the NTLMv2 hash use the command: `cntlm -H -u <username> -d <domain> <proxy_host:port>`
+
+## info role
+
+A role that diplays system informations from facts.
+
+### info role variables
+
+| Variables       | Description                                               | Default |
+| --------------- | --------------------------------------------------------- | ------- |
+| `info_hostname` | Display hostname, `true` or `false`                       | `true`  |
+| `info_os`       | Display os information, `true` or `false`                 | `true`  |
+| `info_hardware` | Display hardware information, `true` or `false`           | `true`  |
+| `info_date`     | Display date/time information, `true` or `false`          | `true`  |
+| `info_network`  | Display network information, `true` or `false`            | `true`  |
+| `info_mounts`   | Display mounts file system information, `true` or `false` | `true`  |
+| `info_ufw`      | Display UFW configuration information, `true` or `false`  | `true`  |
 
 ## os_update role
 
@@ -76,9 +79,9 @@ A role that updates/upgrades Ubuntu and Debian Operating Systems.
 
 ### os_update role variables
 
-- `os_update_upgrade`
-  - Default: `dist`
-  - Description: Upgrade level, mainly `no`, `safe` or `dist`.
+| Variables           | Description                                   | Default |
+| ------------------- | --------------------------------------------- | ------- |
+| `os_update_upgrade` | Upgrade level, mainly `no`, `safe` or `dist`. | `dist`  |
 
 ## reboot role
 
@@ -86,12 +89,10 @@ A role that reboots Ubuntu and Debian Operating Systems.
 
 ### reboot role variables
 
-- `reboot_timeout`
-  - Default: `300`
-  - Description: Timeout of reboot in seconds.
-- `reboot_force`
-  - Default: `false`
-  - Description: Force system to reboot.
+| Variables        | Description                   | Default |
+| ---------------- | ----------------------------- | ------- |
+| `reboot_timeout` | Timeout of reboot in seconds. | `300`   |
+| `reboot_force`   | Force system to reboot.       | `false` |
 
 ## ufw role
 
@@ -99,15 +100,11 @@ A role that configures UFW Firewall Ubuntu and Debian Operating Systems.
 
 ### ufw role variables
 
-- `ufw_policy_incoming`
-  - Default: `deny`
-  - Description: Incoming policy.
-- `ufw_policy_outgoing`
-  - Default: `allow`
-  - Description: Outgoing policy.
-- `ufw_logging`
-  - Default: `on`
-  - Description: Log in syslog. Possible value: on, off, low, medium, high, full
+| Variables             | Description                                                                  | Default |
+| --------------------- | ---------------------------------------------------------------------------- | ------- |
+| `ufw_policy_incoming` | Incoming policy.                                                             | `deny`  |
+| `ufw_policy_outgoing` | Outgoing policy.                                                             | `allow` |
+| `ufw_logging`         | Log in syslog. Possible value: `on`, `off`, `low`, `medium`, `high`, `full`. | `on`    |
 
 ```yaml
 ufw_rules:
@@ -153,7 +150,7 @@ example:
     - jfx.system
 
   roles:
-    - cntlm
+    - role: cntlm
       vars:
         cntlm_username: my_username
         cntlm_domain: corporate_domain
@@ -161,17 +158,17 @@ example:
         cntlm_proxies:
           - my_corporate_proxy:8080
         ...
-    - apt_proxy
+    - role: apt_proxy
       vars:
         apt_proxy_url: http://proxy_host:proxy_port/
-    - os_update
+    - role: os_update
       vars:
         os_update_upgrade: safe
-    - reboot
+    - role: reboot
       vars:
         reboot_timeout: 120
         reboot_force: true
-    - ufw
+    - role: ufw
       vars:
         ufw_rules:
           - rule: allow
@@ -180,6 +177,11 @@ example:
             comment: 'Incoming connection on ssh port'
           - rule: allow
             ...
+    - role: info
+      vars:
+        info_hostname: false
+        info_date: false
+        info_ufw: false
 ```
 
 ## Authors

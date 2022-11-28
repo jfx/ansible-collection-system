@@ -31,19 +31,17 @@ example:
     - jfx.system
 
   roles:
-    - apt_proxy
+    - role: apt_proxy
       vars:
         apt_proxy_url: http://proxy_host:proxy_port/
 ```
 
 ### apt_proxy role variables
 
-* `apt_proxy_url`
-  * Required
-  * Description: URL of the proxy, format: `http://proxy_host:proxy_port/`
-* `apt_proxy_enabled`
-  * Default: `true`
-  * Description: Enable or disable the proxy configuration for apt.
+| Variables           | Description                                                | Default  |
+| ------------------- | ---------------------------------------------------------- | -------- |
+| `apt_proxy_url`     | URL of the proxy, format: `http://proxy_host:proxy_port/`. | Required |
+| `apt_proxy_enabled` | Enable or disable the proxy configuration for apt.         | `true`   |
 
 ## Authors
 

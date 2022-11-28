@@ -31,7 +31,7 @@ example:
     - jfx.system
 
   roles:
-    - cntlm
+    - role: cntlm
       vars:
         cntlm_username: my_username
         cntlm_domain: corporate_domain
@@ -43,42 +43,22 @@ example:
 
 ### cntlm role variables
 
-* `cntlm_arch`
-  * Default: `amd64`
-  * Description: Binary architecture of cntlm amd64|arm64 ...
-* `cntlm_at_boot`
-  * Default: `false`
-  * Description: Start cntlm at boot true|false.
-* `cntlm_username`
-  * Required
-  * Description: Proxy username.
-* `cntlm_domain`
-  * Required
-  * Description: Proxy account domain/workgroup name.
-* `cntlm_pass_ntlmv2`
-  * Required
-  * Description: Hashes of the proxy account password. Get by the command: `cntlm -H -u <username> -d <domain> <proxy_host:port>`
-* `cntlm_proxies`
-  * Required
-  * Description: List of proxies `<proxy_host:port>`.
-* `cntlm_no_proxy`
-  * Default: `localhost, 127.0.0.*, 10.*, 192.168.*`
-  * Description: No proxy networks.
-* `cntlm_listen`
-  * Default: `3128`
-  * Description: Local port number for the cntlm `[<addr>:]<port_number>`.
-* `cntlm_gateway`
-  * Default: `no`
-  * Description: Gateway mode yes|no.
-* `cntlm_allow`
-  * Default: `false`
-  * Description: List of ACL allow rule.
-* `cntlm_deny`
-  * Default: `300`
-  * Description: List of ACL deny rule.
-* `cntlm_status`
-  * Default: `started`
-  * Description: Status of cntlm mainly `started|stopped`.
+| Variables           | Description                                               | Default                                 |
+| ------------------- | --------------------------------------------------------- | --------------------------------------- |
+| `cntlm_arch`        | Binary architecture of cntlm `amd64|arm64`;               | `amd64`                                 |
+| `cntlm_at_boot`     | Start cntlm at boot `true|false`.                         | `false`                                 |
+| `cntlm_username`    | Proxy username.                                           | Required                                |
+| `cntlm_domain`      | Proxy account domain/workgroup name.                      | Required                                |
+| `cntlm_pass_ntlmv2` | Hashes of the proxy account password.(*)                  | Required                                |
+| `cntlm_proxies`     | List of proxies `<proxy_host:port>`.                      | Required                                |
+| `cntlm_no_proxy`    | No proxy networks.                                        | `localhost, 127.0.0.*, 10.*, 192.168.*` |
+| `cntlm_listen`      | Local port number for the cntlm `[<addr>:]<port_number>`. | `3128`                                  |
+| `cntlm_gateway`     | Gateway mode `'yes'` or `'no'` (with single quote).       | `'no'`                                  |
+| `cntlm_allow`       | List of ACL allow rule.                                   | `{}`                                    |
+| `cntlm_deny`        | List of ACL deny rule.                                    | `{}`                                    |
+| `cntlm_status`      | Status of cntlm mainly `started|stopped`.                 | `started`                               |
+
+(*) To get the NTLMv2 hash use the command: `cntlm -H -u <username> -d <domain> <proxy_host:port>`
 
 ## Authors
 

@@ -1,0 +1,8 @@
+---
+info_hostname: true
+info_os: true
+info_hardware: true
+info_date: true
+info_network: true
+info_mounts: true
+info_ufw: true

@@ -33,7 +33,7 @@ example:
     - jfx.system
 
   roles:
-    - ufw
+    - role: ufw
       vars:
         ufw_rules:
           - rule: allow
@@ -46,15 +46,11 @@ example:
 
 ### ufw role variables
 
-* `ufw_policy_incoming`
-  * Default: `deny`
-  * Description: Incoming policy.
-* `ufw_policy_outgoing`
-  * Default: `allow`
-  * Description: Outgoing policy.
-* `ufw_logging`
-  * Default: `on`
-  * Description: Log in syslog. Possible value: on, off, low, medium, high, full
+| Variables             | Description                                                                  | Default |
+| --------------------- | ---------------------------------------------------------------------------- | ------- |
+| `ufw_policy_incoming` | Incoming policy.                                                             | `deny`  |
+| `ufw_policy_outgoing` | Outgoing policy.                                                             | `allow` |
+| `ufw_logging`         | Log in syslog. Possible value: `on`, `off`, `low`, `medium`, `high`, `full`. | `on`    |
 
 ```yaml
 ufw_rules:

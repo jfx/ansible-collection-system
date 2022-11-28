@@ -1,0 +1,75 @@
+---
+- name: Hostname
+  ansible.builtin.debug:
+    var: ansible_hostname
+  when: info_hostname
+
+- name: OS and Kernel info
+  vars:
+    msg: |
+         Distribution: {{ ansible_distribution }}
+         Release: {{ ansible_distribution_release }}
+         Distribution Version: {{ ansible_distribution_version }}
+         Kernel: {{ ansible_kernel }}
+         Architecture: {{ ansible_architecture }}
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: info_os
+
+- name: Hardware info
+  vars:
+    msg: |
+         CPU: {{ ansible_processor }}
+         CPU Core: {{ ansible_processor_cores }}
+         vCPU: {{ ansible_processor_vcpus }}
+         RAM: {{ (ansible_memtotal_mb / 1024) | round(1) }} Gb
+         Memory used: {{ ((ansible_memtotal_mb - ansible_memfree_mb) /ansible_memtotal_mb * 100) | round | int }}%
+         SWAP: {{ ansible_memory_mb.swap.total }}
+         SWAP used: {{ ansible_memory_mb.swap.used }}
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: info_hardware
+
+- name: Date/time info
+  vars:
+    msg: |
+         Time: {{ now() }}
+         Timezone: {{ ansible_date_time.tz }}
+         Uptime: {{ now().replace(microsecond=0) - now().fromtimestamp(now(fmt='%s') | int - ansible_uptime_seconds) }}
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: info_date
+
+- name: Network info
+  vars:
+    msg: |
+      Interfaces: {{ ansible_interfaces }}
+      All IP: {{ ansible_all_ipv4_addresses }}
+      Gateway: {{ ansible_default_ipv4.gateway }}
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: info_network
+
+- name: Mounts info
+  vars:
+    msg: |
+      {% for mount in ansible_mounts %}
+      {% if mount.fstype != 'squashfs' %}
+      Mount point: {{ mount.mount }} - Type: {{ mount.fstype }} - Used: {{ ((mount.size_total - mount.size_available) / mount.size_total * 100) | round | int }}% - Size: {{ (mount.size_total / 1024 / 1024 / 1024) | round(1) }} Gb
+      {% endif %}
+      {% endfor %}
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: info_mounts
+
+- name: Return UFW rules list
+  ansible.builtin.command: ufw status verbose
+  register: ufw_status
+  changed_when: false
+  ignore_errors: true  # noqa ignore-errors
+  when: info_ufw
+
+- name: UFW info
+  ansible.builtin.debug:
+    msg: "{{ ufw_status.stdout_lines }}"
+  when: info_ufw and (not ufw_status.failed)

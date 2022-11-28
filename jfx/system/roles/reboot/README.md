@@ -31,7 +31,7 @@ example:
     - jfx.system
 
   roles:
-    - reboot
+    - role: reboot
       vars:
         reboot_timeout: 120
         reboot_force: true
@@ -39,12 +39,10 @@ example:
 
 ### reboot role variables
 
-* `reboot_timeout`
-  * Default: `300`
-  * Description: Timeout of reboot in seconds.
-* `reboot_force`
-  * Default: `false`
-  * Description: Force system to reboot.
+| Variables        | Description                   | Default |
+| ---------------- | ----------------------------- | ------- |
+| `reboot_timeout` | Timeout of reboot in seconds. | `300`   |
+| `reboot_force`   | Force system to reboot.       | `false` |
 
 ## Authors
 

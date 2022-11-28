@@ -31,16 +31,16 @@ example:
     - jfx.system
 
   roles:
-    - os_update
+    - role: os_update
       vars:
         os_update_upgrade: safe
 ```
 
 ### os_update role variables
 
-* `os_update_upgrade`
-  * Default: `dist`
-  * Description: Upgrade level, mainly `no`, `safe` or `dist`.
+| Variables           | Description                                   | Default |
+| ------------------- | --------------------------------------------- | ------- |
+| `os_update_upgrade` | Upgrade level, mainly `no`, `safe` or `dist`. | `dist`  |
 
 ## Authors
 
